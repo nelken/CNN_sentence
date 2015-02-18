@@ -16,6 +16,7 @@ import theano.tensor as T
 import re
 import warnings
 import sys
+from units import * 
 warnings.filterwarnings("ignore")   
 
 def train_conv_net(datasets,
@@ -157,7 +158,6 @@ def train_conv_net(datasets,
     #start training over mini-batches
     print '... training'
     epoch = 0
-    best_val_perf = 0
     val_perf = 0
     test_perf = 0       
     cost_epoch = 0    
@@ -176,9 +176,8 @@ def train_conv_net(datasets,
         val_losses = [val_model(i) for i in xrange(n_val_batches)]
         val_perf = 1- np.mean(val_losses)                        
         print('epoch %i, train perf %f %%, val perf %f' % (epoch, train_perf * 100., val_perf*100.))
-        if val_perf >= best_val_perf:
-            test_loss = test_model_all(test_set_x,test_set_y)        
-            test_perf = 1- test_loss         
+    test_loss = test_model_all(test_set_x,test_set_y)        
+    test_perf = 1- test_loss         
     return test_perf
 
 def shared_dataset(data_xy, borrow=True):
