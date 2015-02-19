@@ -15,16 +15,8 @@ import theano
 import theano.tensor as T
 from theano.tensor.signal import downsample
 from theano.tensor.nnet import conv
+from units import *
 
-def ReLU(x):
-    return T.maximum(0.0, x)
-def Sigmoid(x):
-    return T.nnet.sigmoid(x)
-def Tanh(x):
-    return T.tanh(x)
-def Iden(x):
-    return(x)
-        
 class HiddenLayer(object):
     """
     Class for HiddenLayer
